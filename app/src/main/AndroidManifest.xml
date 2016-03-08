@@ -7,6 +7,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:name=".MyApplication"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
@@ -20,7 +21,8 @@
         </activity>
 
         <service android:name=".Service1"
-            android:process=":s">
+                 android:process=":s"
+            >
 
             <intent-filter>
 

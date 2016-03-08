@@ -1,20 +1,17 @@
 package com.example.daisongsong.myapplicationselfbinder;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.daisongsong.myapplicationselfbinder.date.BpDateInterface;
 import com.example.daisongsong.myapplicationselfbinder.date.IDateInterface;
 import com.example.daisongsong.myapplicationselfbinder.timer.BnTimerInterface;
-import com.example.daisongsong.myapplicationselfbinder.timer.ITimerInterface;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -54,9 +51,15 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    public MainActivity() {
+        super();
+        Log.e("tag", "MainActivity constuctor");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("tag", "MainActivity onCreate");
         setContentView(R.layout.activity_main);
 
         mTextViewTime = (TextView) findViewById(R.id.mTextViewTime);
@@ -67,17 +70,17 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent("aa.bb.cc");
         intent.setPackage("com.example.daisongsong.myapplicationselfbinder");
-        bindService(intent, new ServiceConnection() {
-            @Override
-            public void onServiceConnected(ComponentName name, IBinder service) {
-                mITimeService = new TimeServiceProxy(service);
-            }
-
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-
-            }
-        }, Context.BIND_AUTO_CREATE);
+//        bindService(intent, new ServiceConnection() {
+//            @Override
+//            public void onServiceConnected(ComponentName name, IBinder service) {
+//                mITimeService = new TimeServiceProxy(service);
+//            }
+//
+//            @Override
+//            public void onServiceDisconnected(ComponentName name) {
+//
+//            }
+//        }, Context.BIND_AUTO_CREATE);
 
 
         findViewById(R.id.mButtonStart).setOnClickListener(new View.OnClickListener() {
